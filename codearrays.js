@@ -1,6 +1,5 @@
- //Objects for Area/Country Codes
-
-var usZones = [
+//Objects for Area/Country Codes
+var usCodes = [
 
 	{
 		name: 'AST',
@@ -129,6 +128,9 @@ var usZones = [
 		codes: ["911","456","500","533","544","566","577","600","700","710","800","844","855","866","877","888","900"]
 	}
 ];
+
+
+var canadaCodes = ["403","587","780","825","250","778","236","604","204","431","506","709","867","902","782","416","647","437","519","226","548","613","343","705","249","807","905","289","365","418","581","450","579","514","438","819","873","306","639"];
 
 
 //Country Codes
@@ -783,6 +785,36 @@ var countryCodes = [
 		name:	'US/Canada',
 		code:		'1',
 		capital:	'Washington, DC',
+		offset:		(-5),
+		dst:	true,
+		start_month:	2,
+		start_week:	2,
+		start_offset:	false,
+		start_day:	0,
+		end_month:	10,
+		end_week:	1,
+		end_day:	0
+	},
+
+	{
+		name:	'United States',
+		code:		'1',
+		capital:	'Washington, DC',
+		offset:		(-5),
+		dst:	true,
+		start_month:	2,
+		start_week:	2,
+		start_offset:	false,
+		start_day:	0,
+		end_month:	10,
+		end_week:	1,
+		end_day:	0
+	},
+
+	{
+		name:	'Canada',
+		code:		'1',
+		capital:	'Ottawa',
 		offset:		(-5),
 		dst:	true,
 		start_month:	2,
