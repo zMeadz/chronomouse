@@ -1,4 +1,3 @@
-
 //Build Local Info object
 function getLocalInfo(text,options,callback) {
 
@@ -6,20 +5,14 @@ function getLocalInfo(text,options,callback) {
     if (!text) {
         return;
     }
-
-    if(!validateString(text)){
-        return;
-    }
     
     var localInfo = new Object();
-    var text = cleanText(text); //Maximum input length = 5
+    var text = cleanText(text.toString()); //Maximum input length = 6
     var text = standardizeCountry(text); // Adjust for 00
+    localInfo['text'] = text;
 
     //set Options
     setOptions(localInfo,options);
-
-    localInfo['text'] = text;
-
 
     //Check for US
     checkUS(localInfo);
@@ -55,26 +48,12 @@ function standardizeCountry(x) {
 
 }
 
-function validateString(text){
-
-    if(typeof(text) == "string"){
-        return true;
-    }
-
-    else {  
-        console.log("method: getLocalInfo requires string input:");
-        console.log("getLocalInfo( string: codeToSearch, function: callback )");
-        return false;
-    }
-
-}
-
 function setOptions(object,options){
 
     //Set Defaults
     object['options'] = {};
     object['options']['military'] = true;
-    object['options']['zone_display'] = "name";
+    object['options']['zone_display'] = "offset";
 
     //Only accept validated options
     var submittedOptions = options;
@@ -88,8 +67,8 @@ function setOptions(object,options){
         object['options']['military'] = false;
     }
 
-    if(submittedOptions['zone_display'] === "offset") {
-        object['options']['zone_display'] = "offset";
+    if(submittedOptions['zone_display'] === "name") {
+        object['options']['zone_display'] = "name";
     }
 
 }
@@ -137,6 +116,10 @@ function checkUS(object) {
 
         if (beginning === "+1") {
             text = text.replace("+1", "");
+        }
+
+        if (text.substring(0,1) == "1"){
+            text = text.substring(1,text.length);
         }
 
         if (text.length < 3) {
@@ -198,8 +181,8 @@ function addLocation(object) {
                 location = getLoc(object);
             }
 
-            if(location){
-                object['country_info'] = getCountryInfo({text:'+1'});
+            if (location) {
+                chooseUsCanada(object);
             }
 
             break;
@@ -235,15 +218,15 @@ function getLoc(object) {
     var location = false;
     var zone_display_key = object['options']['zone_display'];
 
-    for (i=0;i<usZones.length-1;i++) {
+    for (i=0;i<usCodes.length-1;i++) {
 
-        for (x=0;x<usZones[i]['codes'].length;x++) {
+        for (x=0;x<usCodes[i]['codes'].length;x++) {
 
-            if (text === usZones[i]['codes'][x]) {
-                var location = usZones[i]['codes'][x+1];
-                object['time']['zone'] = usZones[i][zone_display_key];
-                object['offset'] = usZones[i]['offset'];
-                object['dst'] = usZones[i]['dst'];
+            if (text === usCodes[i]['codes'][x]) {
+                var location = usCodes[i]['codes'][x+1];
+                object['time']['zone'] = usCodes[i][zone_display_key];
+                object['offset'] = usCodes[i]['offset'];
+                object['dst'] = usCodes[i]['dst'];
                 break;
             }
 
@@ -256,7 +239,7 @@ function getLoc(object) {
         return location;
     }
 
-    var tollFree = usZones[usZones.length-1];
+    var tollFree = usCodes[usCodes.length-1];
 
     for (i=0;i<tollFree['codes'].length;i++) {
         if (text === tollFree['codes'][i]) {
@@ -269,6 +252,23 @@ function getLoc(object) {
     }
         
     return location;
+
+}
+
+//For US/Canada Area codes, add correct Country
+function chooseUsCanada(object){
+
+    var code = object['text'];
+    var usIndex = getCountryInfo({text:'+1'}).index;
+
+    object['country_info'] = countryCodes[usIndex+1];
+
+    for (i=0;i<canadaCodes.length;i++) {
+        if (code === canadaCodes[i]) {
+            object['country_info'] = countryCodes[usIndex+2];
+            break;
+        }
+    }
 
 }
 
@@ -303,6 +303,8 @@ function addTime(object) {
         return;
     }
 
+    object['dstnow'] = false;
+
     var type = object['type'];
     var zone = object['time']['zone'];
     var offset = object['offset'];
@@ -322,6 +324,7 @@ function addTime(object) {
     var utcHour = hour+utcOffset;
     var hour2 = false;
     var military = object['options']['military'];
+
 
     //Check for Daylight Savings
     var dst = 0;
@@ -431,6 +434,8 @@ function checkDst(object) {
         }
 
     }
+
+    object['dstnow'] = dst;
 
     return dst;
 
