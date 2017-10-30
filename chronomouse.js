@@ -7,8 +7,8 @@ function getLocalInfo(text,options,callback) {
     }
     
     var localInfo = new Object();
-    var text = cleanText(text.toString()); //Maximum input length = 6
-    var text = standardizeCountry(text); // Adjust for 00
+    var text = cleanText(text.toString());
+    var text = standardizeCountry(text);
     localInfo['text'] = text;
 
     //set Options
@@ -575,8 +575,7 @@ function formatTime(hour,mins,offset,military) {
 
 }
 
-//Removes empty characters
-//Provides flexibility for highlighted selections
+//Allow only numerical and "+" characters
 function cleanText(x) {
 
     var text = x;
