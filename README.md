@@ -92,48 +92,48 @@ console.log( getLocalInfo('+55').location );
 
 **object.country_info** - object. Contains info about the country. See further properties below. If US/Canada Country Code, returns info for US.
 
-   -**object.country_info.code** - string. Country calling code, i.e. '55'.
+     -**object.country_info.code** - string. Country calling code, i.e. '55'.
 
-   -**object.country_info.capital** - string. Capital city.
+     -**object.country_info.capital** - string. Capital city.
 
-   -**object.country_info.dst** - boolean. If country has Daylight Savings laws. NOT an indication of Daylight Savings being currently active.
-   
-   -**object.country_info.offset** - number. GMT Offset.
+     -**object.country_info.dst** - boolean. If country has Daylight Savings laws. NOT an indication of Daylight Savings being currently active.
+
+     -**object.country_info.offset** - number. GMT Offset.
 
 **object.options** - object. Received input options. More on passing options below.
 
-   -**object.options.military** - boolean. If 24-hour time is set. Default true.
+     -**object.options.military** - boolean. If 24-hour time is set. Default true.
 
-   -**object.options.zone_display** - string. 'name' or 'offset'. Default 'name'.
+     -**object.options.zone_display** - string. 'name' or 'offset'. Default 'name'.
 
 **object.time** - object. Contains info about the current time.
 
-   -**object.time.display** - string. Current time in hh:mm format. If miltary time is set to false, then this will include the meridian (AM/PM).
+     -**object.time.display** - string. Current time in hh:mm format. If miltary time is set to false, then this will include the meridian (AM/PM).
 
 ```
-console.log ( getLocalInfo('615').time.display ); 
-// 8:45 AM 
+     console.log ( getLocalInfo('615').time.display ); 
+     // 8:45 AM 
 ```
 
-   -**object.time.hour** - string. Current hour.
+     -**object.time.hour** - string. Current hour.
 
-   -**object.time.hour2** - string. For split US/Canada time zones - the current hour of the time zone immediately east.
+     -**object.time.hour2** - string. For split US/Canada time zones - the current hour of the time zone immediately east.
 
-   -**object.time.mins** - string. Current minutes.
+     -**object.time.mins** - string. Current minutes.
 
-   -**object.time.meridian** - string. Current meridian (AM/PM).
+     -**object.time.meridian** - string. Current meridian (AM/PM).
 
-   -**object.time.meridian2** - string. For split time zones - the other meridian for hour2.
+     -**object.time.meridian2** - string. For split time zones - the other meridian for hour2.
 
-   -**object.time.zone** - string. Time zone, displayed as the name of the time zone, or as the GMT offset, depending on the options. The default is 'offset' and is displayed in format "GMT+/-[offset]".
+     -**object.time.zone** - string. Time zone, displayed as the name of the time zone, or as the GMT offset, depending on the options. The default is 'offset' and is displayed in format "GMT+/-[offset]".
 
 
 ```
-console.log ( getLocalInfo('615').time.zone ); 
-// GMT-5 
+     console.log ( getLocalInfo('615').time.zone ); 
+     // GMT-5 
 
-console.log ( getLocalInfo('615',{zone_display: 'area'}).time.zone ); 
-// CST 
+     console.log ( getLocalInfo('615',{zone_display: 'area'}).time.zone ); 
+     // CST 
 ```
 
 ## Setting Options 
