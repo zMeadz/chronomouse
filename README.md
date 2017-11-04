@@ -7,7 +7,11 @@ Get information such as the current time, GMT offset, time zone name, location, 
 Currently supports US & Canada Area Codes and all Country Codes.
 
 ## Getting Started
-Download chronomouse.2.4.0.min.js (55 KB) and refer: script type='text/javascript' src='chronomouse.2.3.4.min.js'/script 
+Download chronomouse.2.4.0.min.js (55 KB) and refer: 
+
+```
+<script type='text/javascript' src='chronomouse.2.4.0.min.js'></script >
+```
 
 ## Examples
 
@@ -101,18 +105,24 @@ console.log ( getLocalInfo('615').time.display );
 ```
 
 -**object.time.hour** - string. Current hour.
+
 -**object.time.hour2** - string. For split US/Canada time zones - the current hour of the time zone immediately east.
+
 -**object.time.mins** - string. Current minutes.
+
 -**object.time.meridian** - string. Current meridian (AM/PM).
+
 -**object.time.meridian2** - string. For split time zones - the other meridian for hour2.
+
 -**object.time.zone** - string. Time zone, displayed as the name of the time zone, or as the GMT offset, depending on the options. The default is 'offset' and is displayed in format "GMT+/-[offset]".
 
-```
-	console.log ( getLocalInfo('615').time.zone ); 
-	// GMT-5 
 
-	console.log ( getLocalInfo('615',{zone_display: 'area'}).time.zone ); 
-	// CST 
+```
+console.log ( getLocalInfo('615').time.zone ); 
+// GMT-5 
+
+console.log ( getLocalInfo('615',{zone_display: 'area'}).time.zone ); 
+// CST 
 ```
 
 ## Setting Options 
