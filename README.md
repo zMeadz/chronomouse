@@ -155,3 +155,7 @@ console.log ( getLocalInfo('615',{zone_display: 'offset'}).time.zone );
 // GMT-5
 ```
 
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
+
