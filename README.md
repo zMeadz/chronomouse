@@ -82,9 +82,9 @@ console.log( getLocalInfo('+55').location );
 
 **object.valid** - boolean. True, if a matching code was found in the time info arrarys. If false, other properties will may falsy (undefined or false). 
 
-**object.dst** - boolean. If country has Daylight Savings laws. NOT an indication of Daylight Savings being currently active.
+**object.dst** - boolean. If country has Daylight Savings laws. NOT an indication of Daylight Savings being currently active. Note: DST Laws are subject to change and would require updating codearrays.js.
 
-**object.dstnow** - boolean. If Daylight Savings is currently in effect.
+**object.dstnow** - boolean. If Daylight Savings is currently in effect. Note: DST Laws are subject to change and would require updating codearrays.js.
 
 **object.offset** - number. Offset of the zone without calculating daylight savings.
 
