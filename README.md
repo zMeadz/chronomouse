@@ -76,15 +76,16 @@ console.log( getLocalInfo('+55').location );
 ```
 
 object.valid - boolean. True, if a matching code was found in the time info arrarys. If false, other properties will may falsy (undefined or false). 
-
-object.dst - boolean. If country has Daylight Savings laws. NOT an indication of Daylight Savings being currently active. object.dstnow - boolean. If Daylight Savings is currently in effect. 
+object.dst - boolean. If country has Daylight Savings laws. NOT an indication of Daylight Savings being currently active. 
+object.dstnow - boolean. If Daylight Savings is currently in effect. 
 object.offset - number. Offset of the zone without calculating daylight savings. 
 object.type - string. Distinguishes area from country code. Will return either 'area' or 'country'. 
 object.country_info - object. Contains info about the country. See further properties below. If US/Canada Country Code, returns info for US. 
-	object.country_info.code - string. Country calling code, i.e. '55'. 
-	object.country_info.capital - string. Capital city. 
-	object.country_info.dst - boolean. If country has Daylight Savings laws. NOT an indication of Daylight Savings being currently active. 
-	object.country_info.offset - number. GMT Offset. 
+	
+object.country_info.code - string. Country calling code, i.e. '55'. 
+object.country_info.capital - string. Capital city. 
+object.country_info.dst - boolean. If country has Daylight Savings laws. NOT an indication of Daylight Savings being currently active. 
+object.country_info.offset - number. GMT Offset. 
 
 object.options - object. Received input options. More on passing options below. 
 object.options.military - boolean. If 24-hour time is set. Default true. 
