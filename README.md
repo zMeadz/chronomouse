@@ -1,4 +1,4 @@
-# ChronoMouse.js 
+# ChronoMouse.js
 
 ChronoMouse.js is a compact Javascript library that helps to get current time and location data for any phone number, area code, or country code.
 
@@ -7,10 +7,17 @@ Get information such as the current time, GMT offset, time zone name, location, 
 Currently supports US & Canada Area Codes and all Country Codes.
 
 ## Getting Started
-Download chronomouse.2.4.0.min.js (55 KB) and refer: 
+
+Download [chronomouse.2.4.0.min.js](http://www.chronomouse.com) (55 KB) and refer:
 
 ```
 <script type='text/javascript' src='chronomouse.2.4.0.min.js'></script >
+```
+
+OR install with npm:
+
+```
+$ npm i chronomouse
 ```
 
 ## Examples
@@ -18,40 +25,40 @@ Download chronomouse.2.4.0.min.js (55 KB) and refer:
 ```
 console.log ( getLocalInfo('615').time.display );
 
-// 8:45 AM 
+// 8:45 AM
 
 ```
 
 ```
-getLocalInfo('(615) 555-5555',{ 
-	military: false, 
-	zone_display: 'area' 
-}, 
-	function(object){ 
-		var phoneInfo = object.time.display +' '+ object.location; 
-		console.log ( phoneInfo ); 
+getLocalInfo('(615) 555-5555',{
+	military: false,
+	zone_display: 'area'
+},
+	function(object){
+		var phoneInfo = object.time.display +' '+ object.location;
+		console.log ( phoneInfo );
 
-		// 8:45 PM Nashville, TN 
+		// 8:45 PM Nashville, TN
 
-}); 
-```
-
-```
-getLocalInfo('+49',{ zone_display: 'offset' }, function(object){ 
-	var phoneInfo = object.time.display +' '+ object.time.zone; 
-	console.log ( phoneInfo ); 
-
-	// 17:00 GMT+3 
 });
 ```
 
 ```
-var phoneDiv = document.getElementsById('phone'); 
-var phoneNumber = phoneDiv.textContent; 
-var currentTime = getLocalInfo(phoneNumber,{military:false}).time.display; 
-phoneDiv.textContent = phoneNumber+' | '+currentTime ; 
+getLocalInfo('+49',{ zone_display: 'offset' }, function(object){
+	var phoneInfo = object.time.display +' '+ object.time.zone;
+	console.log ( phoneInfo );
 
-// (720) 555-5555 | 3:20 PM 
+	// 17:00 GMT+3
+});
+```
+
+```
+var phoneDiv = document.getElementsById('phone');
+var phoneNumber = phoneDiv.textContent;
+var currentTime = getLocalInfo(phoneNumber,{military:false}).time.display;
+phoneDiv.textContent = phoneNumber+' | '+currentTime ;
+
+// (720) 555-5555 | 3:20 PM
 ```
 
 ## Properties
@@ -60,27 +67,27 @@ phoneDiv.textContent = phoneNumber+' | '+currentTime ;
 getLocalInfo( string area/country code, options, function callback )
 ```
 
-getLocalInfo( ) accepts the first 6 numberical and '+' characters of any string. 
+getLocalInfo( ) accepts the first 6 numberical and '+' characters of any string.
 
-Input text must start with '+' or '00' to trigger country code search. 
+Input text must start with '+' or '00' to trigger country code search.
 
 ```
-var object = getLocalInfo('615'); 
+var object = getLocalInfo('615');
 ```
 
 **object.text** - string. The input text for the area or country code.
 
-**object.location** - string. For area codes, the name of the major city for that area followed by state abbreviation. Country codes, the name of the country. 
+**object.location** - string. For area codes, the name of the major city for that area followed by state abbreviation. Country codes, the name of the country.
 
 ```
-console.log( getLocalInfo('415').location ); 
-// San Francisco, CA 
+console.log( getLocalInfo('415').location );
+// San Francisco, CA
 
-console.log( getLocalInfo('+55').location ); 
-// Brazil 
+console.log( getLocalInfo('+55').location );
+// Brazil
 ```
 
-**object.valid** - boolean. True, if a matching code was found in the time info arrarys. If false, other properties will may falsy (undefined or false). 
+**object.valid** - boolean. True, if a matching code was found in the time info arrarys. If false, other properties will may falsy (undefined or false).
 
 **object.dst** - boolean. If country has Daylight Savings laws. NOT an indication of Daylight Savings being currently active. Note: DST Laws are subject to change and would require updating codearrays.js.
 
@@ -111,8 +118,8 @@ console.log( getLocalInfo('+55').location );
 **object.time.display** - string. Current time in hh:mm format. If miltary time is set to false, then this will include the meridian (AM/PM).
 
 ```
-     console.log ( getLocalInfo('615').time.display ); 
-     // 8:45 AM 
+     console.log ( getLocalInfo('615').time.display );
+     // 8:45 AM
 ```
 
 **object.time.hour** - string. Current hour.
@@ -129,33 +136,32 @@ console.log( getLocalInfo('+55').location );
 
 
 ```
-     console.log ( getLocalInfo('615').time.zone ); 
-     // GMT-5 
+     console.log ( getLocalInfo('615').time.zone );
+     // GMT-5
 
-     console.log ( getLocalInfo('615',{zone_display: 'area'}).time.zone ); 
-     // CST 
+     console.log ( getLocalInfo('615',{zone_display: 'area'}).time.zone );
+     // CST
 ```
 
-## Setting Options 
+## Setting Options
 
-**military** - boolean. Sets time to 24-hour format. Default 'true'. 
+**military** - boolean. Sets time to 24-hour format. Default 'true'.
 ```
-console.log ( getLocalInfo('615').time.display ); 
-// 19:00 
+console.log ( getLocalInfo('615').time.display );
+// 19:00
 
-console.log ( getLocalInfo('615',{military: false}).time.display ); 
-// 7:00 PM 
+console.log ( getLocalInfo('615',{military: false}).time.display );
+// 7:00 PM
 ```
-**zone_display** - string. Sets object.zone_display. Can be 'name' OR 'offset'. Displays zone by zone name or GMT offset. Default 'offset'. 
+**zone_display** - string. Sets object.zone_display. Can be 'name' OR 'offset'. Displays zone by zone name or GMT offset. Default 'offset'.
 ```
-console.log ( getLocalInfo('615',{zone_display: 'area'}).time.zone ); 
-// CST 
+console.log ( getLocalInfo('615',{zone_display: 'area'}).time.zone );
+// CST
 
-console.log ( getLocalInfo('615',{zone_display: 'offset'}).time.zone ); 
+console.log ( getLocalInfo('615',{zone_display: 'offset'}).time.zone );
 // GMT-5
 ```
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
-
