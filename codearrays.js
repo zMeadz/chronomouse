@@ -635,7 +635,7 @@ var countryCodes = [
 		name:	'Brazil',
 		code:		'55',
 		capital:	'Brasília',
-		offset:		(-3),
+		offset:		(-4),
 		dst:	true,
 		start_month:	9,
 		start_week:	3,
