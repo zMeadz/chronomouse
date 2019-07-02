@@ -4052,3 +4052,9 @@ var countryCodes = [
 	}
 
 ];
+
+module.exports = {
+	usCodes,
+	canadaCodes,
+	countryCodes
+}
