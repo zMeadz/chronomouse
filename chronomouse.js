@@ -1,3 +1,9 @@
+var arrays = require('./codearrays')
+
+var usCodes = arrays.usCodes
+var countryCodes = arrays.countryCodes
+var canadaCodes = arrays.canadaCodes
+
 //Build Local Info object
 function getLocalInfo(text,options,callback) {
 
@@ -590,4 +596,6 @@ function cleanText(x) {
 
 }
 
-
+module.exports = {
+    getLocalInfo
+}
